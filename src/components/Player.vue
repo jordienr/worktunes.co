@@ -14,7 +14,6 @@
         </div>
         <div v-else class="dummy-player">
             <span>
-                😪
             </span>
         </div>
 
@@ -168,9 +167,9 @@ export default {
                 -webkit-appearance: none;
                 width: 100px;
                 height: 25px;
-                background: $gray-500;
+                background: $gray-900;
                 outline: none;
-                opacity: 0.7;
+                opacity: 0.8;
                 -webkit-transition: .2s;
                 transition: opacity .2s;
                 }
@@ -182,14 +181,14 @@ export default {
                 appearance: none;
                 width: 25px;
                 height: 25px;
-                background: $gray-900;
+                background: $main-600;
                 cursor: pointer;
             }
     
             .volume-slider::-moz-range-thumb {
                 width: 25px;
                 height: 25px;
-                background: $gray-900;
+                background: $main-600;
                 cursor: pointer;
             }
         }
