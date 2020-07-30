@@ -40,6 +40,8 @@ export default {
 <style lang="scss" scoped>
 .stations {
  .station-grid {
+    max-width: 1100px;
+    margin: auto;
     display: grid;
     padding: .5rem;
     grid-template-columns: repeat(auto-fit, minmax(300px, 2fr))
