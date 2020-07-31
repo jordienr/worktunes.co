@@ -1,10 +1,14 @@
 <template>
     <div class="main-layout">
         <!-- Header? -->
-        <h1 class="logo">
-            <router-link to="/">worktunes</router-link>
-        </h1>
-        <slot></slot>
+        <main>
+            <header>
+                <h1 class="logo">
+                    <router-link to="/">worktunes</router-link>
+                </h1>
+            </header>
+            <slot></slot>
+        </main>
         <div class="player-wrapper">
             <player></player>
         </div>
@@ -32,6 +36,13 @@ export default {
         left: 1rem;
         right: 1rem;
     }
+    main {
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        right: 0;
+    }
+
     .logo {
         font-size: 1.2rem;
         padding: 1rem;

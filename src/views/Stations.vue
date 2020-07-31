@@ -44,7 +44,8 @@ export default {
     margin: auto;
     display: grid;
     padding: .5rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr))
+    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+    z-index: 1000;
  }
 }
 </style>

@@ -1,22 +1,5 @@
 <template>
     <div class="player">
-        <div v-if="!!$store.state.currentStation.length" class="youtube-wrapper">
-            <div class="youtube-overlay"></div>
-            <div class="iframe-wrapper">
-                <youtube 
-                    class="yt-player"
-                    ref="player"
-                    @playing="playing = true"
-                    @paused="playing = false"
-                    :video-id="$youtube.getIdFromUrl($store.state.currentStation)"
-                ></youtube>    
-            </div>
-        </div>
-        <div v-else class="dummy-player">
-            <span>
-            </span>
-        </div>
-
         <div class="controls">
             <button @click="toggleMute">
                 <v-icon :name="muted ? 'volume-mute' : 'volume-up'"></v-icon>
@@ -29,6 +12,20 @@
                     {{volume}}
                 </span>
                 <input class="volume-slider" type="range" orient="vertical" name="volume" min="0" max="100" step="5" v-model="volume">
+            </div>
+        </div>
+
+        <div v-if="!!$store.state.currentStation.length" class="youtube-wrapper">
+            <div class="youtube-overlay"></div>
+            <div class="iframe-wrapper">
+                <youtube 
+                    class="yt-player"
+                    ref="player"
+                    fitParent
+                    @playing="playing = true"
+                    @paused="playing = false"
+                    :video-id="$youtube.getIdFromUrl($store.state.currentStation)"
+                ></youtube>    
             </div>
         </div>
     </div>
@@ -87,42 +84,34 @@ export default {
 .player {
     display: flex;
     align-items: center;
-    .dummy-player {
-        height: 100px;
-        width: 100px;
-        background-color: $gray-500;
-        font-size: 2.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-    }
-    position: relative;
     justify-content: center;
     .youtube-wrapper {
-        position: relative;
+        z-index: -1;
         .youtube-overlay {
-            position: absolute;
-            left: 0;
+            position: fixed;
+            background-color: $gray-800;
+            opacity: .8;
             top: 0;
-            right: 0;
+            left: 0;
             bottom: 0;
-            background: $gray-900;
-            opacity: .5;
+            right: 0;
         }
         .iframe-wrapper {
-            height: 100px;
-            width: 100%;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: fixed;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            filter: blur(12px);
+            z-index: -1;
         }
     }
     .controls {
-        position: absolute;
+        position: fixed;
         display: flex;
         align-items: center;
+        bottom: 1rem;
+        z-index: 1000;
         button {
             height: 100px;
             width: 100px;
