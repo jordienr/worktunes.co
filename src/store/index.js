@@ -20,6 +20,11 @@ export default new Vuex.Store({
       state.volume = payload
     }
   },
+  getters: {
+    currentStation: state => {
+      return state.currentStation
+    }
+  },
   actions: {
   },
   modules: {

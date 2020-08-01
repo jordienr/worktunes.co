@@ -40,7 +40,9 @@ export default {
         volume: 0
     }),
     updated() {
-        this.playing && this.player.playVideo()
+        if (this.playing && this.player) {
+            this.player.playVideo()
+        }
     },
     methods: {
         toggleMute() {
@@ -54,32 +56,24 @@ export default {
             }
         }
     },
+    computed: {
+        player() {
+            return this.$refs.player.player
+        },
+        currentStation() {
+            return this.$store.getters.currentStation
+        }
+    },
     watch: {
         playing(val) {
             val ? this.player.playVideo() : this.player.pauseVideo()
+            this.player.getVolume().then(vol => this.volume = vol)
         },
         muted(val) {
             val ? this.player.mute() : this.player.unMute()
         },
         volume(val) {
             this.player.setVolume(val)
-        },
-        '$store.state.currentStation': {
-            handler: () => {
-                this.player.getVolume().then(vol => this.volume = vol)
-            }
-        }
-    },
-    mounted() {
-        if (this.player) {
-            this.player.getVolume().then(vol => {
-            this.volume = vol
-            }).catch(() => console.error('Cannot get volume'))
-        }
-    },
-    computed: {
-        player() {
-            return this.$refs.player.player
         },
     }
 }
