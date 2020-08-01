@@ -17,7 +17,7 @@
 
         <div v-if="!!$store.state.currentStation.length" class="youtube-wrapper">
             <div class="youtube-overlay"></div>
-            <div class="iframe-wrapper">
+            <div class="iframe-wrapper" ref="iframewrapper">
                 <youtube 
                     class="yt-player"
                     ref="player"
@@ -62,7 +62,7 @@ export default {
         },
         currentStation() {
             return this.$store.getters.currentStation
-        }
+        },
     },
     watch: {
         playing(val) {
@@ -75,7 +75,7 @@ export default {
         volume(val) {
             this.player.setVolume(val)
         },
-    }
+    },
 }
 </script>
 
@@ -85,7 +85,7 @@ export default {
     align-items: center;
     justify-content: center;
     .youtube-wrapper {
-        z-index: -1;
+        z-index: -100;
         .youtube-overlay {
             position: fixed;
             background-color: $gray-800;
@@ -182,4 +182,11 @@ export default {
         }
     }
 }
+
+@media only screen and (max-width: 600px) {
+  .youtube-wrapper {
+      display: none
+  }
+}
+
 </style>
