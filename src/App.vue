@@ -3,16 +3,38 @@
     <main-layout>
       <router-view/>
     </main-layout>
+      <cookie-notif v-if="showCookieNotif" @accept="acceptCookies"></cookie-notif>
   </div>
 </template>
 
 <script>
 import MainLayout from '@/components/Layouts/MainLayout'
+import CookieNotif from '@/components/CookieNotif'
+import {setCookie, getCookie} from '@/services/cookies.js'
 
 export default {
   name: 'App',
   components: {
-    MainLayout
+    MainLayout,
+    CookieNotif
+  },
+  data: () => ({
+    showCookieNotif: true
+  }),
+  methods: {
+    acceptCookies() {
+      setCookie('cookiesAccepted', 'true', 30)
+      this.showCookieNotif = false
+    }
+  },
+  mounted() {
+    let cookie = getCookie('cookiesAccepted')
+
+    console.log(cookie)
+
+    if (cookie) {
+      this.showCookieNotif = false
+    }
   }
 }
 </script>
@@ -24,6 +46,6 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-.app {
-}
+  .cookie-wrapper {
+  }
 </style>

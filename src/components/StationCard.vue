@@ -1,6 +1,7 @@
 <template>
     <div class="station-card" @click="clickHandler" :class="{selected: selected}">
         {{this.name}}
+        <span v-if="selected">🎶</span>
     </div>
 </template>
 

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Stations from '../views/Stations.vue'
+import Cookies from '@/views/Cookies'
 
 Vue.use(VueRouter)
 
@@ -9,6 +10,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Stations
+  },
+  {
+    path: '/cookies',
+    name: 'Cookie Policy',
+    component: Cookies
   }
   // {
   //   path: '/about',

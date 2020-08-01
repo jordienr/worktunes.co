@@ -5,7 +5,7 @@
                 <v-icon :name="muted ? 'volume-mute' : 'volume-up'"></v-icon>
             </button>
             <button :class="{playing: playing}" @click="togglePlay">            
-                <v-icon :name="playing ? 'pause' : 'play'"></v-icon>
+                <v-icon :name="icon" :pulse="state === 'loading'"></v-icon>
             </button>
             <div class="volume-input">
                 <span>
@@ -22,8 +22,9 @@
                     class="yt-player"
                     ref="player"
                     fitParent
-                    @playing="playing = true"
-                    @paused="playing = false"
+                    @playing="state = 'playing'"
+                    @paused="state = 'paused'"
+                    @buffering="state = 'loading'"
                     :video-id="$youtube.getIdFromUrl($store.state.currentStation)"
                 ></youtube>    
             </div>
@@ -37,11 +38,17 @@ export default {
     data: () => ({
         playing: false,
         muted: false,
-        volume: 0
+        loading: false,
+        volume: 0,
+        state: 'paused',
+        icon: 'play'
     }),
     updated() {
-        if (this.playing && this.player) {
-            this.player.playVideo()
+        if (this.state === 'playing') {
+            this.$refs.player.player.getIframe().then(iframe => {
+                iframe.src = iframe.src + '&playsinline=1'
+                this.player.playVideo()
+            })
         }
     },
     methods: {
@@ -53,6 +60,16 @@ export default {
                 this.playing ? this.player.pauseVideo() : this.player.playVideo()
             } else {
                 window.alert('Select a station first')
+            }
+        },
+        buttonHandler() {
+            if (this.state === 'paused') {
+                this.player.pauseVideo()    
+            } else if (this.state === 'loading') {
+                return
+            } else if (this.state === 'playing') {
+                this.player.playVideo()
+                this.player.getVolume().then(vol => this.volume = vol)
             }
         }
     },
@@ -75,7 +92,23 @@ export default {
         volume(val) {
             this.player.setVolume(val)
         },
+        state (val) {
+            if (val === 'paused') {
+                this.icon = 'play'
+                this.player.playVideo()
+            } else if (val === 'loading') {
+                this.icon = 'spinner'
+            } else if (val === 'playing') {
+                this.icon = 'pause'
+            }
+        }
     },
+    mounted() {
+        // Necesary for iOS devices
+        this.$refs.player.player.getIframe().then(iframe => iframe.src = iframe.src + '&playsinline=1')
+        // this.$refs.player.player.getIframe().then(iframe => console.log(iframe))
+
+    }
 }
 </script>
 
@@ -132,11 +165,8 @@ export default {
             align-items: center;
             margin: 0;
             &:hover {
-                span {
-                    opacity: 1;
-                }
-                .volume-slider {
-                    opacity: 1;
+                * {
+                    opacity: 1
                 }
             }
             span {
@@ -186,6 +216,18 @@ export default {
 @media only screen and (max-width: 600px) {
   .youtube-wrapper {
       display: none
+  }
+  .player {
+    .controls {
+        button {
+            opacity: 1;
+        }
+        .volume-input {
+            span {
+                opacity: 1
+            }
+        }
+    }
   }
 }
 

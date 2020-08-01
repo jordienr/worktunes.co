@@ -54,6 +54,7 @@ export default {
 @media only screen and (max-width: 600px) {
   .player-wrapper {
       z-index: 100;
+      margin-bottom: 150px;
   }
 }
 </style>
