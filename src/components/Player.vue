@@ -35,7 +35,6 @@
 export default {
     name: 'Player',
     data: () => ({
-        player: undefined,
         playing: false,
         muted: false,
         volume: 0
@@ -74,13 +73,10 @@ export default {
             }).catch(() => console.error('Cannot get volume'))
         }
     },
-    beforeMount() {
-        this.player = this.$refs.player.player
-    },
     computed: {
-        // player() {
-        //     return this.$refs.player.player
-        // },
+        player() {
+            return this.$refs.player.player
+        },
     }
 }
 </script>
