@@ -47,7 +47,6 @@ export default {
             this.muted = !this.muted
         },
         togglePlay() {
-            this.player.getVolume().then(vol => this.volume = vol)
             if (this.$store.state.currentStation.length) {
                 this.playing ? this.player.pauseVideo() : this.player.playVideo()
             } else {
@@ -64,6 +63,11 @@ export default {
         },
         volume(val) {
             this.player.setVolume(val)
+        },
+        '$store.state.currentStation': {
+            handler: () => {
+                this.player.getVolume().then(vol => this.volume = vol)
+            }
         }
     },
     mounted() {
