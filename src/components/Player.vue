@@ -89,6 +89,8 @@ export default {
             } else if (val === 'error') {
                 window.alert('This station is not responding, please try another one.')
                 this.state = 'paused'
+            } else if (val === 'cued') {
+                this.state = 'paused'
             }
         }
     },
