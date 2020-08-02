@@ -1,7 +1,11 @@
 <template>
-    <div class="station-card" @click="clickHandler" :class="{selected: selected}">
+    <div class="station-card" @click="clickHandler" :class="{selected: selected}" @mouseover="hover = true" @mouseleave="hover = false">
         {{this.name}}
-        <span v-if="selected">🎶</span>
+        <div class="emoji-wrapper" v-if="hover">
+            <span v-for="(hashtag, index) in hashtags" :key="index">
+                {{getEmoji(hashtag)}}
+            </span>
+        </div>
     </div>
 </template>
 
@@ -12,10 +16,26 @@ export default {
         url: String,
         id: String,
         name: String,
+        hashtags: Array
     },
+    data: () => ({
+        hover: false
+    }),
     methods: {
         clickHandler() {
             this.$store.commit('setCurrentStation', this.url)
+        },
+        getEmoji(hashtag) {
+            switch (hashtag) {
+                case 'jazz':
+                    return '🎺'
+                case 'lofi':
+                    return '🎧'
+                case 'guitar':
+                    return '🎸'
+                case 'piano':
+                    return '🎹'
+            }
         }
     },
     mounted() {
@@ -24,6 +44,10 @@ export default {
         selected() {
             if (this.$store.state.currentStation === this.url) { return true }
             else { return false }
+        },
+        emoji() {
+            console.log(this.hashtags)
+            return '💫'
         }
     }
 }
@@ -38,6 +62,7 @@ export default {
     border-radius: 2px;
     letter-spacing: .5px;
     color: $gray-100;
+    display: flex;
     &:hover {
         transition: .1s;
         cursor: pointer;

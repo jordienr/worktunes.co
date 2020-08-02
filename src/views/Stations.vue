@@ -6,25 +6,25 @@
     <div class="filters">
       <div class="input-group">
         <input type="checkbox" v-model="filters" name="filter" value="lofi" id="lofi">
-        <label for="lofi">lofi</label>
+        <label for="lofi">🎧 lofi</label>
       </div>
       <div class="input-group">
         <input type="checkbox" v-model="filters" name="filter" value="jazz" id="jazz">
-        <label for="jazz">jazz</label>
+        <label for="jazz">🎺 jazz</label>
       </div>
       <div class="input-group">
         <input type="checkbox" v-model="filters" name="filter" value="piano" id="piano">
-        <label for="piano">piano</label>
+        <label for="piano">🎹 piano</label>
       </div>
       <div class="input-group">
         <input type="checkbox" v-model="filters" name="filter" value="guitar" id="guitar">
-        <label for="guitar">guitar</label>
+        <label for="guitar">🎸 guitar</label>
       </div>
     </div>
 
     <div v-if="!loading" class="station-grid">
       <div v-for="station in filteredStationList" :key="station.id">
-        <station-card :name="station.name" :id="station.id" :url="station.url"></station-card>
+        <station-card :name="station.name" :id="station.id" :url="station.url" :hashtags="station.hashtags"></station-card>
       </div>
     </div>
 

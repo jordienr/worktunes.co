@@ -35,8 +35,6 @@ export default {
   mounted() {
     let cookie = getCookie('cookiesAccepted')
 
-    console.log(cookie)
-
     if (cookie) {
       this.showCookieNotif = false
     }
