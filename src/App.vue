@@ -1,5 +1,9 @@
 <template>
   <div id="app" class="app">
+    <div class="info" v-if="technicalProblems">
+      ⚠ We are having some technical problems and are currently working on fixing it.
+      <span @click="technicalProblems = false">Close</span>
+    </div>
     <main-layout>
       <router-view/>
     </main-layout>
@@ -19,7 +23,8 @@ export default {
     CookieNotif
   },
   data: () => ({
-    showCookieNotif: true
+    showCookieNotif: true,
+    technicalProblems: true
   }),
   methods: {
     acceptCookies() {
@@ -47,5 +52,22 @@ export default {
 
 <style lang="scss" scoped>
   .cookie-wrapper {
+  }
+  .info {
+    background-color: $main-100;
+    padding: .4rem;
+    font-family: $sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      color: $gray-900;
+      background-color: $main-300;
+      border-radius: 4px;
+      padding: .5rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 </style>
