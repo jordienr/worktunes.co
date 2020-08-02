@@ -44,6 +44,7 @@ export default {
         icon: 'play'
     }),
     updated() {
+        console.log('state:', this.state)
         if (this.state === 'playing') {
             this.$refs.player.player.getIframe().then(iframe => {
                 iframe.src = iframe.src + '&playsinline=1'
@@ -211,7 +212,12 @@ export default {
             }
         }
     }
+    /deep/ iframe {
+        height: 100vh;
+        width: 100vw;
+    }
 }
+
 
 @media only screen and (max-width: 600px) {
   .youtube-wrapper {
