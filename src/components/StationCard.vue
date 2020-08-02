@@ -1,7 +1,7 @@
 <template>
     <div class="station-card" @click="clickHandler" :class="{selected: selected}" @mouseover="hover = true" @mouseleave="hover = false">
         {{this.name}}
-        <div class="emoji-wrapper" v-if="hover">
+        <div class="emoji-wrapper" v-if="hover || selected">
             <span v-for="(hashtag, index) in hashtags" :key="index">
                 {{getEmoji(hashtag)}}
             </span>

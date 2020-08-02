@@ -4,7 +4,7 @@
             <button @click="toggleMute">
                 <v-icon :name="muted ? 'volume-mute' : 'volume-up'"></v-icon>
             </button>
-            <button :class="{playing: playing}" @click="togglePlay">            
+            <button :class="{playing: state === 'playing'}" @click="buttonHandler">           
                 <v-icon :name="icon" :pulse="state === 'loading'"></v-icon>
             </button>
             <div class="volume-input">
@@ -21,10 +21,12 @@
                 <youtube 
                     class="yt-player"
                     ref="player"
-                    fitParent
-                    @playing="state = 'playing'"
-                    @paused="state = 'paused'"
-                    @buffering="state = 'loading'"
+                    @playing="() => { stateHandler('playing') }"
+                    @paused="() => { stateHandler('paused') }"
+                    @buffering="() => { stateHandler('loading') }"
+                    @error="() => { stateHandler('error') }"
+                    @ended="() => { stateHandler('ended') }"
+                    @cued="() => { stateHandler('cued') }"
                     :video-id="$youtube.getIdFromUrl($store.state.currentStation)"
                 ></youtube>    
             </div>
@@ -44,34 +46,21 @@ export default {
         icon: 'play'
     }),
     updated() {
-        console.log('state:', this.state)
-        if (this.state === 'playing') {
-            this.$refs.player.player.getIframe().then(iframe => {
-                iframe.src = iframe.src + '&playsinline=1'
-                // this.player.playVideo()
-            })
-        }
     },
     methods: {
         toggleMute() {
             this.muted = !this.muted
         },
-        togglePlay() {
-            if (this.$store.state.currentStation.length) {
-                this.playing ? this.player.pauseVideo() : this.player.playVideo()
-            } else {
-                window.alert('Select a station first')
-            }
-        },
         buttonHandler() {
             if (this.state === 'paused') {
-                this.player.pauseVideo()    
-            } else if (this.state === 'loading') {
-                return
-            } else if (this.state === 'playing') {
-                this.player.playVideo()
+                this.player.playVideo()    
                 this.player.getVolume().then(vol => this.volume = vol)
+            } else if (this.state === 'playing') {
+                this.player.pauseVideo()
             }
+        },
+        stateHandler(val) {
+            this.state = val
         }
     },
     computed: {
@@ -83,10 +72,6 @@ export default {
         },
     },
     watch: {
-        playing(val) {
-            val ? this.player.playVideo() : this.player.pauseVideo()
-            this.player.getVolume().then(vol => this.volume = vol)
-        },
         muted(val) {
             val ? this.player.mute() : this.player.unMute()
         },
@@ -94,20 +79,22 @@ export default {
             this.player.setVolume(val)
         },
         state (val) {
+            console.log('state', val)
             if (val === 'paused') {
                 this.icon = 'play'
-                this.player.playVideo()
             } else if (val === 'loading') {
                 this.icon = 'spinner'
             } else if (val === 'playing') {
                 this.icon = 'pause'
+            } else if (val === 'error') {
+                window.alert('This station is not responding, please try another one.')
+                this.state = 'paused'
             }
         }
     },
     mounted() {
         // Necesary for iOS devices
         this.$refs.player.player.getIframe().then(iframe => iframe.src = iframe.src + '&playsinline=1')
-        // this.$refs.player.player.getIframe().then(iframe => console.log(iframe))
 
     }
 }
