@@ -47,7 +47,7 @@ export default {
         if (this.state === 'playing') {
             this.$refs.player.player.getIframe().then(iframe => {
                 iframe.src = iframe.src + '&playsinline=1'
-                this.player.playVideo()
+                // this.player.playVideo()
             })
         }
     },
