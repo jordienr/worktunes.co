@@ -24,7 +24,7 @@ export default {
   },
   data: () => ({
     showCookieNotif: true,
-    technicalProblems: true
+    technicalProblems: false
   }),
   methods: {
     acceptCookies() {

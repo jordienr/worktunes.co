@@ -97,7 +97,6 @@ export default {
     mounted() {
         // Necesary for iOS devices
         this.$refs.player.player.getIframe().then(iframe => iframe.src = iframe.src + '&playsinline=1')
-
     }
 }
 </script>
