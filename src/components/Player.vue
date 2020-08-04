@@ -174,7 +174,7 @@ export default {
                 -webkit-appearance: none;
                 width: 100px;
                 height: 25px;
-                background: $gray-900;
+                background: $gray-700;
                 outline: none;
                 opacity: 0.8;
                 -webkit-transition: .2s;
