@@ -21,5 +21,5 @@ const db = firebase.firestore()
 // export utils/refs
 export {
   firebase,
-  db,
+  db
 }

@@ -24,6 +24,9 @@ export default {
     methods: {
         clickHandler() {
             this.$store.commit('setCurrentStation', this.url)
+            this.$analytics.logEvent('Select station', {
+                station_name: this.name
+            })
         },
         getEmoji(hashtag) {
             switch (hashtag) {
