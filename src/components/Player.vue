@@ -1,17 +1,18 @@
 <template>
     <div class="player">
         <div class="controls">
-            <button @click="toggleMute">
-                <v-icon :name="muted ? 'volume-mute' : 'volume-up'"></v-icon>
-            </button>
-            <button :class="{playing: state === 'playing'}" @click="buttonHandler">           
-                <v-icon :name="icon" :pulse="state === 'loading'"></v-icon>
-            </button>
-            <div class="volume-input">
-                <span>
-                    {{volume}}
-                </span>
-                <input class="volume-slider" type="range" orient="vertical" name="volume" min="0" max="100" step="5" v-model="volume">
+            <div class="volume">
+                <div class="volume-input">
+                    <v-slider v-model="volume" dotSize="24" width="200px" height="24px" dragOnClick tooltip="hover"></v-slider>
+                </div>
+            </div>
+            <div class="buttons">
+                <button @click="toggleMute">
+                    <v-icon :name="muted ? 'volume-mute' : 'volume-up'"></v-icon>
+                </button>
+                <button :class="{playing: state === 'playing'}" @click="buttonHandler">           
+                    <v-icon :name="icon" :pulse="state === 'loading'"></v-icon>
+                </button>
             </div>
         </div>
 
@@ -130,6 +131,7 @@ export default {
     .controls {
         position: fixed;
         display: flex;
+        flex-direction: column;
         align-items: center;
         bottom: 1rem;
         z-index: 1000;
@@ -148,56 +150,7 @@ export default {
             }
         }
         .volume-input {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            &:hover {
-                * {
-                    opacity: 1
-                }
-            }
-            span {
-                height: 75px;
-                width: 100px;
-                background-color: $gray-900;
-                opacity: .8;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-            }
-            .volume-slider {
-                padding: 0;
-                margin: 0;
-                -webkit-appearance: none;
-                width: 100px;
-                height: 25px;
-                background: $gray-700;
-                outline: none;
-                opacity: 0.8;
-                -webkit-transition: .2s;
-                transition: opacity .2s;
-                }
-    
-       
-    
-            .volume-slider::-webkit-slider-thumb {
-                -webkit-appearance: none;
-                appearance: none;
-                width: 25px;
-                height: 25px;
-                background: $main-600;
-                cursor: pointer;
-            }
-    
-            .volume-slider::-moz-range-thumb {
-                width: 25px;
-                height: 25px;
-                background: $main-600;
-                cursor: pointer;
-            }
+            width: 100%;
         }
     }
     /deep/ iframe {
