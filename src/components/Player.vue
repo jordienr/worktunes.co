@@ -1,18 +1,16 @@
 <template>
     <div class="player">
         <div class="controls">
+            <button :class="{playing: state === 'playing'}" @click="buttonHandler">           
+                <v-icon :name="icon" :pulse="state === 'loading'"></v-icon>
+            </button>
             <div class="volume">
-                <div class="volume-input">
-                    <v-slider v-model="volume" dotSize="24" width="200px" height="24px" dragOnClick tooltip="hover"></v-slider>
-                </div>
-            </div>
-            <div class="buttons">
                 <button @click="toggleMute">
                     <v-icon :name="muted ? 'volume-mute' : 'volume-up'"></v-icon>
                 </button>
-                <button :class="{playing: state === 'playing'}" @click="buttonHandler">           
-                    <v-icon :name="icon" :pulse="state === 'loading'"></v-icon>
-                </button>
+                <div class="volume-input" :class="{'volume-muted': muted}">
+                    <v-slider v-model="volume" dotSize="24" width="120px" height="24px" dragOnClick tooltip="hover"></v-slider>
+                </div>
             </div>
         </div>
 
@@ -131,7 +129,6 @@ export default {
     .controls {
         position: fixed;
         display: flex;
-        flex-direction: column;
         align-items: center;
         bottom: 1rem;
         z-index: 1000;
@@ -149,8 +146,24 @@ export default {
                 transition: .1s;
             }
         }
-        .volume-input {
-            width: 100%;
+        .volume {
+            display: flex;
+            align-items: center;
+            background-color: $gray-900;
+            opacity: .8;
+            &:hover {
+                opacity: 1;
+            }
+            button {
+                width: 64px;
+            }
+            .volume-input {
+                padding: 0 1rem;
+            }
+        }
+        .volume-muted {
+            opacity: .5;
+            pointer-events: none;
         }
     }
     /deep/ iframe {
