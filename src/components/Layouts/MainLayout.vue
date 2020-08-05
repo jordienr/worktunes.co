@@ -50,7 +50,6 @@ export default {
     }),
     methods: {
         sendFeedback() {
-            console.log('sendfee')
             this.modalOpen = true
         }
     }

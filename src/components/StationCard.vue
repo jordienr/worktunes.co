@@ -49,7 +49,6 @@ export default {
             else { return false }
         },
         emoji() {
-            console.log(this.hashtags)
             return '💫'
         }
     }
