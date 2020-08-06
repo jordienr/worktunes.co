@@ -4,6 +4,10 @@
       ⚠ We are having some technical problems and are currently working on fixing it.
       <span @click="technicalProblems = false">Close</span>
     </div>
+    <div class="info" v-if="isMobile">
+      ⚠ Due to mobile limitations worktunes might not work on your mobile device. We recommend you use it from a PC or Mac 😢
+      <span @click="isMobile = false">Okay</span>
+    </div>
     <main-layout>
       <router-view/>
     </main-layout>
@@ -15,16 +19,18 @@
 import MainLayout from '@/components/Layouts/MainLayout'
 import CookieNotif from '@/components/CookieNotif'
 import {setCookie, getCookie} from '@/services/cookies.js'
+import { isMobile } from '@/util/browser.js'
 
 export default {
   name: 'App',
   components: {
     MainLayout,
-    CookieNotif
+    CookieNotif,
   },
   data: () => ({
     showCookieNotif: true,
-    technicalProblems: false
+    technicalProblems: false,
+    isMobile: false
   }),
   methods: {
     acceptCookies() {
@@ -38,6 +44,8 @@ export default {
     if (cookie) {
       this.showCookieNotif = false
     }
+
+    this.isMobile = isMobile()
   }
 }
 </script>
