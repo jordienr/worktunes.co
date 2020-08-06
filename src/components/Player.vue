@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div v-if="!!$store.state.currentStation.length" class="youtube-wrapper">
+        <div v-show="!!$store.state.currentStation.length" class="youtube-wrapper">
             <div class="youtube-overlay"></div>
             <div class="iframe-wrapper" ref="iframewrapper">
                 <youtube 

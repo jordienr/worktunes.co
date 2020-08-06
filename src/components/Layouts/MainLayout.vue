@@ -1,7 +1,7 @@
 <template>
     <div class="main-layout">
         <div class="bgcol"></div>
-        <!-- Header? -->
+        <!-- Header -->
         <main>
             <header>
                 <h1 class="logo">
