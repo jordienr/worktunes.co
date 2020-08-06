@@ -75,6 +75,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         padding: 0 1rem;
+        z-index: 1000;
         .logo {
             font-size: 1.2rem;
             letter-spacing: 1px;
