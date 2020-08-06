@@ -1,9 +1,11 @@
 <template>
     <div class="station-card" @click="clickHandler" :class="{selected: selected}" @mouseover="hover = true" @mouseleave="hover = false">
-        {{this.name}}
-        <div class="emoji-wrapper" v-if="hover || selected">
+        <p class="title">
+            {{this.name}}
+        </p>
+        <div class="hashtag-wrapper" v-if="hover || selected">
             <span v-for="(hashtag, index) in hashtags" :key="index">
-                {{getEmoji(hashtag)}}
+                {{hashtag}}
             </span>
         </div>
     </div>
@@ -57,18 +59,38 @@ export default {
 
 <style lang="scss" scoped>
 .station-card {
-    padding: 2rem;
+    height: 100px;
+    padding: .25rem .5rem;
     font-family: $sans-serif;
-    font-size: 1.2rem;
     transition: .1s;
     border-radius: 2px;
     letter-spacing: .5px;
     color: $gray-100;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
     &:hover {
         transition: .1s;
         cursor: pointer;
         background-color: $gray-850;
+    }
+    .title {
+        font-size: 1.4rem;
+        margin-bottom: .5rem;
+    }
+    .hashtag-wrapper {
+        position: absolute;
+        bottom: 1.6rem;
+        span {
+            color: $gray-400;
+            margin-right: .5rem;
+        }
+        span::before {
+            margin: 0;
+            content: '#';
+            color: $gray-600;
+        }
     }
 }
 .selected {

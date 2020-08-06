@@ -6,22 +6,26 @@
     <div class="filters">
       <div class="input-group">
         <input type="checkbox" v-model="filters" name="filter" value="lofi" id="lofi">
-        <label for="lofi">🎧 lofi</label>
+        <label for="lofi">Lofi</label>
       </div>
       <div class="input-group">
         <input type="checkbox" v-model="filters" name="filter" value="jazz" id="jazz">
-        <label for="jazz">🎺 jazz</label>
+        <label for="jazz">Jazz</label>
       </div>
       <div class="input-group">
         <input type="checkbox" v-model="filters" name="filter" value="piano" id="piano">
-        <label for="piano">🎹 piano</label>
+        <label for="piano">Piano</label>
       </div>
       <div class="input-group">
         <input type="checkbox" v-model="filters" name="filter" value="guitar" id="guitar">
-        <label for="guitar">🎸 guitar</label>
+        <label for="guitar">Guitar</label>
+      </div>
+      <div class="input-group">
+        <input type="checkbox" v-model="filters" name="filter" value="hasLyrics" id="hasLyrics">
+        <label for="hasLyrics">hasLyrics</label>
       </div>
     </div>
-
+    <!--  -->
     <div v-if="!loading" class="station-grid">
       <div v-for="station in filteredStationList" :key="station.id">
         <station-card :name="station.name" :id="station.id" :url="station.url" :hashtags="station.hashtags"></station-card>
@@ -48,21 +52,16 @@ export default {
     loading: false,
     filters: []
   }),
-  methods: {
-    filter() {
-
+  computed: {
+    mostPopular() {
+      return this.stationList.filter(item => item.mostPopular === true)
+    },
+    otherStations() {
+      return this.stationList.filter(item => !item.mostPopular)
     }
   },
-  mounted() {
-    this.loading = true
-    getStations.then(stationList => {
-      this.stationList = stationList
-      this.filteredStationList = stationList
-      this.loading = false
-      }).catch(err => console.error(err))
-  },
-  watch: {
-    filters() {
+  methods: {
+    filter() {
       if (!this.filters.length) {
         this.filteredStationList = this.stationList
       } else {
@@ -76,6 +75,19 @@ export default {
         
         this.filteredStationList = newArr
       }
+    }
+  },
+  mounted() {
+    this.loading = true
+    getStations.then(stationList => {
+      this.stationList = stationList
+      this.filteredStationList = stationList
+      this.loading = false
+      }).catch(err => console.error(err))
+  },
+  watch: {
+    filters() {
+      this.filter()
     }
   }
 }
@@ -98,6 +110,12 @@ export default {
   margin: .5rem;
   max-width: 1100px;
   margin: .5rem auto;
+  label {
+    &::before {
+      content: '#';
+      color: $gray-500;
+    }
+  }
 }
  .input-group {
    input {

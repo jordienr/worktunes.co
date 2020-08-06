@@ -27,22 +27,27 @@
         label {
             display: flex;
             flex-direction: column;
-            margin: .5rem;
-            font-weight: bold;
-            font-size: 1.2rem;
+            margin: .5rem 0;
             input, textarea {
+                border-radius: 2px;
                 margin-top: .25rem;
                 font-size: 1.2rem;
                 padding: .3rem;
+                border: none;
+                background: $gray-200
             }
         }
 
         button {
             background-color: $gray-700;
             border: none;
-            padding: 1rem;
+            padding: .5rem 1rem;
             font-size: 1.2rem;
             color: $gray-100;
+            display: inline;
+            max-width: 120px;
+            margin-left: auto;
+            border-radius: 4px;
         }
     }
 }

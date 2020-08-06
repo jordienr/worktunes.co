@@ -78,7 +78,6 @@ export default {
             this.player.setVolume(val)
         },
         state (val) {
-            // console.log('state', val)
             if (val === 'paused') {
                 this.icon = 'play'
             } else if (val === 'loading') {

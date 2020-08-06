@@ -66,9 +66,9 @@ export default {
         position: fixed;
         z-index: 1000;
         background-color: $gray-500;
-        padding: 1rem;
+        padding: 1rem 2rem;
         box-shadow: 0 4px 12px -4px #000;
-        border-radius: 4px;
+        border-radius: 2px;
     }
 }
 </style>
