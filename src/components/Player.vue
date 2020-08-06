@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div v-show="!!$store.state.currentStation.length" class="youtube-wrapper">
+        <div v-if="!!$store.state.currentStation.length" class="youtube-wrapper">
             <div class="youtube-overlay"></div>
             <div class="iframe-wrapper" ref="iframewrapper">
                 <youtube 
@@ -51,11 +51,15 @@ export default {
             this.muted = !this.muted
         },
         buttonHandler() {
-            if (this.state === 'paused') {
-                this.player.playVideo()    
-                this.player.getVolume().then(vol => this.volume = vol)
-            } else if (this.state === 'playing') {
-                this.player.pauseVideo()
+            if (!this.currentStation.length) {
+                window.alert('Select a station first!')
+            } else {
+                if (this.state === 'paused') {
+                    this.player.playVideo()    
+                    this.player.getVolume().then(vol => this.volume = vol)
+                } else if (this.state === 'playing') {
+                    this.player.pauseVideo()
+                }
             }
         },
         stateHandler(val) {
