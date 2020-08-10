@@ -15,6 +15,7 @@
                         <router-link to="about">About</router-link>
                         <div class="bottom-menu">
                             <button @click.prevent="sendFeedback">Send feedback</button>
+                            <a href="https://github.com/jordienr/worktunes.co" target="_blank">Source Code</a>
                         </div>
                     </div>
                 </div>
@@ -83,7 +84,7 @@ export default {
         .menu-wrapper {
             position: relative;
             .menu-btn {
-                padding: 1rem;
+                padding: .8rem;
                 color: $gray-100;
                 background: transparent;
                 border: none;
@@ -102,11 +103,24 @@ export default {
                     padding: 1rem;
                 }
                 .bottom-menu {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0;
                     button {
                         background-color: transparent;
                         border: none;
+                    }
 
+                    button, a {
                         color: $gray-100;
+                        font-size: 1rem;
+                        font-weight: 400;
+                        text-align: left;
+                        padding: .5rem;
+                        font-family: $sans-serif;
+                        &:hover {
+                            background-color: $gray-800;
+                        }
                     }
                 }
             }
