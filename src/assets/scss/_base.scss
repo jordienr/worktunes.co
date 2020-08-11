@@ -13,3 +13,12 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+.fa-icon {
+    color: $gray-400;
+    height: 18px;
+    width: 18px;
+    &:hover {
+        color: $gray-100;
+    }
+}
