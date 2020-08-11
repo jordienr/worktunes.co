@@ -50,7 +50,7 @@
         font-family: $sans-serif;
         line-height: 1.5rem;
         letter-spacing: 1px;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 }
 </style>
