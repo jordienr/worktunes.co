@@ -12,10 +12,10 @@
                         <v-icon :name="showMenu ? 'window-close' : 'hamburger'" height="24"></v-icon>
                     </button>
                     <div class="menu-list" v-if="showMenu" tabindex="0" @focusout="showMenu = false">
+                        <router-link to="/">Home</router-link>
                         <router-link to="about">About</router-link>
                         <div class="bottom-menu">
                             <button @click.prevent="sendFeedback">Send feedback</button>
-                            <a href="https://github.com/jordienr/worktunes.co" target="_blank">Source Code</a>
                         </div>
                     </div>
                 </div>
@@ -79,6 +79,7 @@ export default {
         z-index: 1000;
         .logo {
             font-size: 1.2rem;
+            margin: 0;
             letter-spacing: 1px;
         }
         .menu-wrapper {
@@ -95,7 +96,7 @@ export default {
                 top: 2.37rem;
                 display: flex;
                 flex-direction: column;
-                background-color: $gray-700;
+                background-color: $gray-800;
                 box-shadow: 0 4px 12px -4px #000;
                 width: 200px;
                 border-radius: 2px;
@@ -106,6 +107,7 @@ export default {
                     display: flex;
                     flex-direction: column;
                     padding: 0;
+                    border-top: 1px solid $gray-850;
                     button {
                         background-color: transparent;
                         border: none;
@@ -116,10 +118,10 @@ export default {
                         font-size: 1rem;
                         font-weight: 400;
                         text-align: left;
-                        padding: .5rem;
+                        padding: 1rem;
                         font-family: $sans-serif;
                         &:hover {
-                            background-color: $gray-800;
+                            background-color: $gray-850;
                         }
                     }
                 }

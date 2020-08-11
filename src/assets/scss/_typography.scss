@@ -5,25 +5,27 @@ $serif: Georgia, Cambria, "Times New Roman", Times, serif;
 $monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
 h1, h2, h3, h4 {
-    font-family: $serif;
-    font-weight: bold;
+    font-family: $sans-serif;
+    font-weight: 500;
     color: $gray-100;
+    margin-bottom: 1rem;
 }
 
 p, a, span, small, h5, h6 {
     font-family: $sans-serif;
     color: $gray-100;
+    margin-bottom: .5rem;
 }
 
 h1 {
-    font-size: 4rem;
-}
-h2 {
-    font-family: 3rem;
-}
-h3 {
     font-size: 2rem;
 }
+h2 {
+    font-family: 1.6rem;
+}
+h3 {
+    font-size: 1.2rem;
+}
 h4 {
-    font-size: 1.6rem;
+    font-size: 1rem;
 }
