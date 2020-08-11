@@ -3,11 +3,13 @@
         <h1>About</h1>
         <p>Worktunes is a web app designed and developed by Jordi Enric</p>
         <br>
-        <p><a href="https://joen.co">website: joen.co</a></p>
-        <p><a href="https://twitter.com/joen_co">Twitter: joen_co</a></p>
-        <p><a href="https://github.com/jordienr/worktunes.co">Code</a></p>
-        <p>Don't expect really good commit messages, I built this in an afternoon.</p>
+        <p>Website: <a href="https://joen.co">joen.co</a></p>
+        <p>Twitter: <a href="https://twitter.com/joen_co">joen_co</a></p>
         <div class="divider"></div>
+        <article>
+            <h3>Is worktunes Open Source?</h3>
+            <p>Yes. Find the code <a href="https://github.com/jordienr/worktunes.co">here</a></p>
+        </article>
         <article>
             <h3>What is worktunes built with?</h3>
             <ul>
@@ -41,6 +43,7 @@
     }
     a {
         font-weight: 400;
+        text-decoration: underline;
     }
     ul {
         color: $gray-100;
