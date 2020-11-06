@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Stations from '../views/Stations.vue'
-import Cookies from '@/views/Cookies'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: 'Home',
@@ -14,12 +13,17 @@ Vue.use(VueRouter)
   {
     path: '/cookies',
     name: 'Cookie Policy',
-    component: Cookies
+    component: import(/* webpackChunkName: "about" */ '../views/Cookies.vue')
   },
   {
     path: '/about',
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Contact.vue')
   }
   // {
   //   path: '/about',
