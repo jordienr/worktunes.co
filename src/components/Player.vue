@@ -1,6 +1,6 @@
 <template>
     <div class="player">
-        <div class="controls">
+        <div class="controls" v-if="this.$route.path === '/'">
             <button :class="{playing: state === 'playing'}" @click="buttonHandler">           
                 <v-icon :name="icon" :pulse="state === 'loading'"></v-icon>
             </button>
@@ -72,7 +72,7 @@ export default {
         },
         currentStation() {
             return this.$store.getters.currentStation
-        },
+        }
     },
     watch: {
         muted(val) {
@@ -108,6 +108,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 300px;
     .youtube-wrapper {
         z-index: -100;
         .youtube-overlay {
@@ -133,7 +134,7 @@ export default {
         position: fixed;
         display: flex;
         align-items: center;
-        bottom: 1rem;
+        bottom: 2.4rem;
         z-index: 1000;
         button {
             height: 100px;

@@ -14,8 +14,8 @@
                     <div class="menu-list" v-if="showMenu" tabindex="0" @focusout="showMenu = false">
                         <router-link to="/">Home</router-link>
                         <router-link to="about">About</router-link>
+                        <router-link to="contact">Contact</router-link>
                         <div class="bottom-menu">
-                            <button @click.prevent="sendFeedback">Send feedback</button>
                         </div>
                     </div>
                 </div>
@@ -25,6 +25,9 @@
         <div class="player-wrapper">
             <player></player>
         </div>
+        <marquee class="marquee" width="100%" direction="left">
+            If you want to support worktunes you can <a href="https://twitter.com/jrd_nrc" target="_blank">follow me on twitter</a> or <a href="https://buymeacoffee.com/joen">buy me a coffee</a>
+        </marquee>
 
         <!-- Modal -->
         <modal v-if="modalOpen" @close="modalOpen = false" title="Send feedback">
@@ -36,14 +39,15 @@
 <script>
 import Player from '@/components/Player'
 import Modal from '@/components/Organisms/Modal'
-import ContactForm from '@/components/Organisms/ContactForm'
+import { ContactForm, FeedbackFish } from '@/components/Organisms/'
 
 export default {
     name: 'MainLayout',
     components: {
         Player,
         Modal,
-        ContactForm
+        ContactForm,
+        FeedbackFish
     },
     data: () => ({
         modalOpen: false,
@@ -78,9 +82,10 @@ export default {
         padding: 0 1rem;
         z-index: 1000;
         .logo {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin: 0;
-            letter-spacing: 1px;
+            letter-spacing: .4px;
+            font-style: italic;
         }
         .menu-wrapper {
             position: relative;
@@ -130,6 +135,15 @@ export default {
     }
 }
 
+.marquee {
+    width: 100%;
+    background-color: $gray-900;
+    bottom: 0;
+    color: $gray-300;
+    padding: .4rem;
+    font-family: 'Courier New', Courier, monospace;
+    position: fixed;
+}
 
 @media only screen and (max-width: 600px) {
   .player-wrapper {
