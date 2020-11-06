@@ -20,11 +20,14 @@
 
 <style lang="scss" scoped>
 .contact-form {
+    max-width: 100%;
+    overflow: hidden;
     form {
         display: flex;
         flex-direction: column;
         font-family: $sans-serif;
         label {
+            color: $gray-100;
             display: flex;
             flex-direction: column;
             margin: .5rem 0;

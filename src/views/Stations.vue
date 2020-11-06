@@ -24,6 +24,14 @@
         <input type="checkbox" v-model="filters" name="filter" value="hasLyrics" id="hasLyrics">
         <label for="hasLyrics">hasLyrics</label>
       </div>
+      <div class="input-group">
+        <input type="checkbox" v-model="filters" name="filter" value="house" id="house">
+        <label for="house">House</label>
+      </div>
+      <div class="input-group">
+        <input type="checkbox" v-model="filters" name="filter" value="arcade" id="arcade">
+        <label for="arcade">Arcade</label>
+      </div>
     </div>
     <!--  -->
     <div v-if="!loading" class="station-grid">
