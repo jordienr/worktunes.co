@@ -23,9 +23,6 @@ import { isMobile } from '@/util/browser.js'
 
 export default {
   name: 'App',
-  metaInfo: {
-    title: '📻 Worktunes.co - Radio'
-  },
   components: {
     MainLayout,
     CookieNotif,
