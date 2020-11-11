@@ -9,10 +9,13 @@ import 'vue-awesome/icons'
 import * as firebase from 'firebase/app'
 import 'firebase/analytics'
 import VueSlider from 'vue-slider-component'
+import VueMeta from 'vue-meta'
+
 
 
 Vue.config.productionTip = false
 
+Vue.use(VueMeta)
 Vue.use(VueYoutube)
 Vue.component('v-slider', VueSlider)
 Vue.component('v-icon', Icon)
