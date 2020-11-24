@@ -4,7 +4,7 @@
         <p>Worktunes is a web app designed and developed by Jordi Enric</p>
         <br>
         <p>Website: <a href="https://joen.co">joen.co</a></p>
-        <p>Twitter: <a href="https://twitter.com/joen_co">joen_co</a></p>
+        <p>Twitter: <a href="https://twitter.com/jrd_nrc">joen_co</a></p>
         <div class="divider"></div>
         <article>
             <h3>Is worktunes Open Source?</h3>
