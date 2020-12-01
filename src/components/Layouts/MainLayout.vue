@@ -8,17 +8,10 @@
                     <router-link to="/">worktunes</router-link>
                 </h1>
                 <div class="menu-wrapper" >
-                    <button class="menu-btn"  @click.stop="showMenu = !showMenu" >
-                        <v-icon :name="showMenu ? 'window-close' : 'hamburger'" height="24"></v-icon>
-                    </button>
-                    <div class="menu-list" v-if="showMenu" tabindex="0" @focusout="showMenu = false">
-                        <router-link to="/">Home</router-link>
-                        <router-link to="about">About</router-link>
-                        <router-link to="contact">Contact</router-link>
-                        <div class="bottom-menu">
-                        </div>
-                    </div>
+                    <button class="feedback-btn" data-feedback-fish>Send feedback</button>
+                    <router-link to="/about">About</router-link>
                 </div>
+                <FeedbackFish projectId="daee8d096c5a99" />
             </header>
             <slot></slot>
         </main>
@@ -28,18 +21,14 @@
         <marquee class="marquee" width="100%" direction="left">
             If you want to support worktunes you can <a href="https://twitter.com/jrd_nrc" target="_blank">follow me on twitter</a> or <a href="https://buymeacoffee.com/joen">buy me a coffee</a>
         </marquee>
-
-        <!-- Modal -->
-        <modal v-if="modalOpen" @close="modalOpen = false" title="Send feedback">
-            <contact-form></contact-form>
-        </modal>
     </div>
 </template>
 
 <script>
 import Player from '@/components/Player'
 import Modal from '@/components/Organisms/Modal'
-import { ContactForm, FeedbackFish } from '@/components/Organisms/'
+import { ContactForm } from '@/components/Organisms/'
+import { FeedbackFish } from "@feedback-fish/vue";
 
 export default {
     name: 'MainLayout',
@@ -89,47 +78,17 @@ export default {
         }
         .menu-wrapper {
             position: relative;
-            .menu-btn {
+            .feedback-btn {
+                
+            }
+            a, button {
                 padding: .8rem;
                 color: $gray-100;
                 background: transparent;
                 border: none;
-            }
-            .menu-list {
-                position: absolute;
-                right: 1rem;
-                top: 2.37rem;
-                display: flex;
-                flex-direction: column;
-                background-color: $gray-800;
-                box-shadow: 0 4px 12px -4px #000;
-                width: 200px;
-                border-radius: 2px;
-                > * {
-                    padding: 1rem;
-                }
-                .bottom-menu {
-                    display: flex;
-                    flex-direction: column;
-                    padding: 0;
-                    border-top: 1px solid $gray-850;
-                    button {
-                        background-color: transparent;
-                        border: none;
-                    }
-
-                    button, a {
-                        color: $gray-100;
-                        font-size: 1rem;
-                        font-weight: 400;
-                        text-align: left;
-                        padding: 1rem;
-                        font-family: $sans-serif;
-                        &:hover {
-                            background-color: $gray-850;
-                        }
-                    }
-                }
+                font-family: $sans-serif;
+                font-weight: 500;
+                font-size: 1rem;
             }
         }
     }
