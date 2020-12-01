@@ -22,3 +22,20 @@ button:focus {
         color: $gray-100;
     }
 }
+
+body::-webkit-scrollbar {
+    width: 3px;               /* width of the entire scrollbar */
+    transition: .2s;
+    &:hover {
+        width: 9px;
+        transition: .2s;
+    }
+  }
+  body::-webkit-scrollbar-track {
+    background: $gray-900;        /* color of the tracking area */
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: $gray-600;    /* color of the scroll thumb */
+    border-radius: 0px;       /* roundness of the scroll thumb */
+    // border: 3px solid orange  /* creates padding around scroll thumb */
+  }
