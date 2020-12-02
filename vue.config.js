@@ -4,8 +4,7 @@ module.exports = {
       loaderOptions: {
         scss: {
           prependData: `
-            @import "@/assets/scss/_colors.scss";
-            @import "@/assets/scss/_typography.scss";
+            @import "@/assets/scss/styles.scss";
             `
         }
       }
